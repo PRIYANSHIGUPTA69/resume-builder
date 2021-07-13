@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import store from './store';
 import User from './Component/User';
 import Ball from './Component/Ball';
-import Cart from './Component/Cart';
+import Cart from './Component/Cart.js';
 import Home from './Component/Home';
 import Product from './Component/Product'
 import {BrowserRouter , Switch , Route} from "react-router-dom"
@@ -20,6 +20,7 @@ function App() {
     //   </div>
     // </Provider>
    <> 
+   <Provider store={store}>
   <BrowserRouter>
   <Switch>
     <Route path="/cart" component={Cart}></Route>
@@ -27,6 +28,7 @@ function App() {
     <Route path="/" component={Home}></Route>
   </Switch>
   </BrowserRouter>
+  </Provider>
     </>
   );
 }
