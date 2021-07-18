@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import BatReducer from "./bat/batReducer";
-import BallReducer from "./ball/ballReducer";
-import userReducer from "./user/userReducer";
-import cartReducer from "./Cart.js/cartReducer";
+import BatReducer from "../../../redux/bat/batReducer";
+import BallReducer from "../../../redux/ball/ballReducer";
+import userReducer from "../../../redux/user/userReducer";
+import cartReducer from "./cartReducer";
 // console.log("root Reducer");
 // merged store
 const rootReducer = combineReducers({

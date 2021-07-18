@@ -1,8 +1,8 @@
 import React from 'react'
-import { products } from '../data/data'
+import { products } from '../../data/data'
 import { connect } from "react-redux"
 import Product from './Product'
-import cartReducer from '../redux/Cart.js/cartReducer'
+import cartReducer from '../cartRedux/Cart.js/cartReducer'
 export  function Home(props) {
     const {cart} = props;
     return (
@@ -12,12 +12,13 @@ export  function Home(props) {
                return(
                    <div>
                    
+                
+                   <img src={product.image} style={{width:"300px",height:"200px"}}></img>
                    <h4>{product.title}</h4>
-                   <img src={product.image} style={{width:"100px",height:"100px"}}></img>
-                   <p>{product.description}</p>
+                   <div>{product.description}</div>
                    <div style={{display:"flex", justifyContent:"space-around"}}>
                        <h6>{product.price}</h6>
-                       <button onClick={props.addItem}>add</button>
+                       <button onClick={()=>{props.addItem(product)}}>add</button>
                    </div>
                    </div>
                )
@@ -35,11 +36,11 @@ const mapDispatchtoProps = dispatch => {
     //    action
     // handler function 
     return {
-       addItem : (val) => {
+       addItem : (obj) => {
             dispatch({
                 type: "add_to_cart",
                 // data send to reducer function 
-                payload: val
+                payload: obj
             })
         }
     }

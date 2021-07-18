@@ -15,7 +15,13 @@ function cartReducer(state = initialState,
                ...state,
                 cart: [...state.cart, action.payload]
             };
-       
+            case "delete_from_cart":
+                  let newCart = state.cart.filter(cart=>{
+                       return cart.id != action.payload.id    
+                    })
+                return{
+                    cart : newCart
+                }
         default:
             return state;
     }

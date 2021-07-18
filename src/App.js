@@ -1,12 +1,9 @@
 import Bat from './Component/Bat';
-import { Provider } from "react-redux";
-import store from './store';
+
 import User from './Component/User';
 import Ball from './Component/Ball';
-import Cart from './Component/Cart.js';
-import Home from './Component/Home';
-import Product from './Component/Product'
-import {BrowserRouter , Switch , Route} from "react-router-dom"
+
+import Ecommerce from './cartPOC/Ecommerce'
 function App() {
   return (
 
@@ -20,15 +17,7 @@ function App() {
     //   </div>
     // </Provider>
    <> 
-   <Provider store={store}>
-  <BrowserRouter>
-  <Switch>
-    <Route path="/cart" component={Cart}></Route>
-    <Route path="/product" component={Product}></Route>
-    <Route path="/" component={Home}></Route>
-  </Switch>
-  </BrowserRouter>
-  </Provider>
+  <Ecommerce></Ecommerce>
     </>
   );
 }
