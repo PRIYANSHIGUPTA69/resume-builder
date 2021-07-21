@@ -39,7 +39,24 @@ function cartReducer(state = initialState,
                     })
                 return{
                     cart : newCart
-                }
+                };
+            case "increase_qty":
+              return {
+                ...state,
+                cart:state.cart.map((item) =>{
+                 return item.id === action.payload.id ? { ...item, qty: item.qty + 1 }:item
+                } )
+                 
+              };
+              case "decrease_qty":
+                return {
+                  ...state,
+                  cart:state.cart.map((item) =>{
+                   return item.id === action.payload.id ?(item.qty>0? { ...item, qty: item.qty - 1 }:{...item,qty: item.qty}):item
+                  } )
+                   
+                };
+
         default:
             return state;
     }

@@ -2,13 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 export function Product(props) {
      const {products} = props
-     console.log(props)
+     
     let producturl = props.match.params.id;
-    console.log(producturl)
+    
     let id = producturl.split(":")[1]
     
    let product = products.filter(p=>{
-       return p.id==producturl
+       return p.id==id
    })
    console.log(product)
     return (
@@ -26,7 +26,7 @@ export function Product(props) {
                         <h6>Description</h6>
                         <div>{p.description}</div>
 
-                        <button>add to cart</button>
+                        <button  onClick={()=>{props.addItem(p)}}>add to cart</button>
                     </div>
                  </div>
              )

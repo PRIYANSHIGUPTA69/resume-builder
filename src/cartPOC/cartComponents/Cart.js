@@ -27,16 +27,10 @@ function Cart(props) {
               <div style={{ paddingLeft: 30 }}>
                 <h4>{product.title}</h4>
 
-                <div className="itemQuantity">
-                  <label htmlFor="qty">Qty</label>
-                  <input
-                    min="1"
-                    type="number"
-                    id="qty"
-                    name="qty"
-                    value={product.qty}
-                    
-                  />
+                <div className="itemQuantity" style={{display:"flex"}}>
+                  <button onClick={() => {props.decreaseQty(product)}}>-</button>
+                  <div style={{width:"30px" , border:"1px solid" , textAlign:"center" }}>  {product.qty}   </div>
+                  <button onClick={() => {props.increaseQty(product)}}>+</button>
                 </div>
                 <p>{product.description}</p>
 
@@ -89,6 +83,18 @@ const mapDispatchtoProps = (dispatch) => {
         payload: obj,
       });
     },
+    increaseQty: (obj) =>{
+      dispatch({
+        type:"increase_qty",
+        payload:obj,
+      })
+    },
+    decreaseQty: (obj) => {
+      dispatch({
+        type:"decrease_qty",
+        payload:obj
+      })
+    }
   };
 };
 export default connect(mapStateToProps, mapDispatchtoProps)(Cart);
