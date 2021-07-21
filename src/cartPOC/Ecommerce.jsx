@@ -14,8 +14,9 @@ export default function Ecommerce() {
   <BrowserRouter>
   <Appbar></Appbar>
   <Switch>
+  <Route path="/product/:id" component={Product} ></Route>
     <Route path="/cart" component={Cart}></Route>
-    <Route path="/product" component={Product}></Route>
+   
     <Route path="/" component={Home}></Route>
   </Switch>
   </BrowserRouter>

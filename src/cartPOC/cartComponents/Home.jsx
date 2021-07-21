@@ -1,8 +1,9 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 import { products } from '../../data/data'
 import { connect } from "react-redux"
 import Product from './Product'
-import cartReducer from '../cartRedux/Cart.js/cartReducer'
+import cartReducer from '../cartRedux/cartReducer'
 export  function Home(props) {
     const {cart} = props;
     return (
@@ -16,8 +17,9 @@ export  function Home(props) {
                    <img src={product.image} style={{width:"300px",height:"200px"}}></img>
                    <h4>{product.title}</h4>
                    <div>{product.description}</div>
+                   <h6>{product.price}</h6>
                    <div style={{display:"flex", justifyContent:"space-around"}}>
-                       <h6>{product.price}</h6>
+                      <Link to={`/product/:${product.id}`} state={product}>Details</Link>
                        <button onClick={()=>{props.addItem(product)}}>add</button>
                    </div>
                    </div>

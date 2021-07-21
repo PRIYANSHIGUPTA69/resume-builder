@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {connect} from "react-redux"
-import cartReducer from '../cartRedux/Cart.js/cartReducer'
+import cartReducer from '../cartRedux/cartReducer'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
