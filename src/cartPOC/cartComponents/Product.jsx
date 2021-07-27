@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { products } from '../../data/data';
+import { products } from '../data/data';
 import { Button } from '@material-ui/core';
 export function Product(props) {
    

@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from "react";
 import { connect } from "react-redux";
-import { coupons} from '../../data/data';
+import { coupons} from '../data/data';
 import './styling/Cart.css'
 import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";

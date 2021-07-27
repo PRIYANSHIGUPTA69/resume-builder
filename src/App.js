@@ -1,23 +1,21 @@
-import Bat from './Component/Bat';
+import react from "react";
+import {BrowserRouter , Switch , Route , Redirect} from "react-router-dom";
+import GettingStarted from "./component/getting-started";
+import Header from "./component/header";
+import LandingPage from "./component/landingPage";
+import './static/scss/app.scss';
 
-import User from './Component/User';
-import Ball from './Component/Ball';
-
-import Ecommerce from './cartPOC/Ecommerce'
 function App() {
   return (
-
-    // 4
-     // redux example
-    // <Provider store={store}>
-    //   <div className="App">
-    //     <Ball></Ball>
-    //     <Bat></Bat>
-    //     <User></User>
-    //   </div>
-    // </Provider>
-   <> 
-  <Ecommerce></Ecommerce>
+    <>
+   
+    <BrowserRouter>
+    <Header></Header>
+    <Switch>
+      <Route path="/getting-started" component={GettingStarted}></Route>
+      <Route path="/" component={LandingPage}></Route>
+    </Switch>
+    </BrowserRouter>
     </>
   );
 }

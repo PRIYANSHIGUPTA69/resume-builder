@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { products } from "../../data/data";
+import { products } from "../data/data";
 import { connect } from "react-redux";
 import Product from "./Product";
 import cartReducer from "../cartRedux/cartReducer";

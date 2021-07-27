@@ -1,4 +1,4 @@
-import {products} from '../../data/data'
+import {products} from '../data/data'
 let initialState = {
     products,
     cart: [],
