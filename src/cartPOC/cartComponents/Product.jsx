@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { products } from '../../data/data';
+import { Button } from '@material-ui/core';
 export function Product(props) {
-     const {products} = props
-     
+   
     let producturl = props.match.params.id;
     
     let id = producturl.split(":")[1]
@@ -17,16 +18,16 @@ export function Product(props) {
              return(
                  <div style={{display:"flex"}}>
                      <div>
-                         <img src={p.image} style={{height:"500px",width:"500px"}}></img>
+                         <img src={p.image} style={{height:"500px",width:"400px" , margin:"20px"}}></img>
                     </div>
                     
                     <div>
                         <h1>{p.title}</h1>
-                        <span>M.R.P {p.price}</span>
+                        <span>M.R.P ₹ {p.price}</span>
                         <h6>Description</h6>
                         <div>{p.description}</div>
 
-                        <button  onClick={()=>{props.addItem(p)}}>add to cart</button>
+                        <Button size='small' variant="contained" color="secondary"   onClick={()=>{props.addItem(p)}}>add to cart</Button>
                     </div>
                  </div>
              )

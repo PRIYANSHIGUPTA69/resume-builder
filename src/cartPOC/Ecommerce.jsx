@@ -5,7 +5,7 @@ import Cart from './cartComponents/Cart'
 import Home from './cartComponents/Home';
 import Product from './cartComponents/Product'
 import {BrowserRouter , Switch , Route} from "react-router-dom"
-
+import './ecommerce.css'
 import Appbar from './cartComponents/Appbar';
 export default function Ecommerce() {
     return (

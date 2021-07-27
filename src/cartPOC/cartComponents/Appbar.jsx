@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState , useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,6 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {connect} from "react-redux"
 import cartReducer from '../cartRedux/cartReducer'
+import "./styling/Navbar.css";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -16,9 +18,13 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  
   title: {
     flexGrow: 1,
   },
+  tool:{
+      position:"relative"
+  }
 }));
 
  export function Appbar(props) {
@@ -26,17 +32,29 @@ const useStyles = makeStyles((theme) => ({
   console.log(cart)
   const classes = useStyles();
 
+  const [cartCount, setCartCount] = useState(0);
+  useEffect(() => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += item.qty;
+    });
+    setCartCount(count);
+  }, [cart, cartCount]);
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar style={{backgroundColor:'#badc58'}} position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton edge="start" className={classes.menuButton} style={{color:'#2f3542'}} aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} style={{color:'#2f3542'}}>
             Shooping Cart
           </Typography>
-          <Link to="/cart" color="#fff">cart</Link>
+          <Link to="/cart" color="#fff" style={{color:'#2f3542'}}>
+          <Button color="inherit">
+              Cart<ShoppingCartIcon style={{marginLeft:'12%', marginRight:'1%'}}/><span className='cartNumber' style={{}}>{cartCount}</span>
+              </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
