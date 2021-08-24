@@ -10,7 +10,6 @@ const Lp = () => {
            <p >Create a Resume that perfectally describes your skils and match job profile.</p>
             <br></br>
            <div >
-                {/* Can also use "Link" instead of "NavLink" from React-Router-DOM */}
                 <NavLink to="/getting-started"  className="btn hvr-float-shadow"><span>Get Started for Free</span>
                 </NavLink>
                 

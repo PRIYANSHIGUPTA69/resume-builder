@@ -1,49 +1,44 @@
 import React,{useState,useEffect} from "react";
 import {NavLink} from "react-router-dom";
-// import update from 'immutability-helper';
+import update from 'immutability-helper';
 import {fieldCd, skinCodes}  from '../../constants/typeCodes';
-// import * as contactActions from '../../actions/contactActions';
-// import { bindActionCreators } from 'redux';
-// import { withRouter } from "react-router-dom";
+import * as contactActions from '../../actions/contactActions';
+import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import ResumePreview from './resumePreview'
-// import { connect } from "react-redux";
-
+import { connect } from "react-redux";
 function Contact(props) {
    let history = useHistory();
-
-   // We set an object to map details of the skin through contact object
-
    const [contact,setContact]= useState(props.contactSection);
-//    useEffect(() => {
-//        if(!props.document || !props.document.id || !props.document.skinCd)
-//        {
-//            history.push('/getting-started')
-//        }
-//    }, [])
+   useEffect(() => {
+       if(!props.document || !props.document.id)
+       {
+           history.push('/getting-started')
+       }
+   }, [])
+  
+ 
   const onchange=(event)=>{
         var key =event.target.name;
         var val =event.target.value;
         // this.setState({contactSection:update(this.state.contactSection,{$merge: {[key]:val}})});
-
-        // We override with the new value if key exists,
-        // else creates key with new value
         setContact({...contact,[key]:val})
     }
     const onSubmit= async()=>{
-        // if(props.contactSection!=null){
-        //     props.updateContact(props.document.id,contact);
-        // }
-        // else{
-        //     props.addContact(props.document.id,contact);
-        // }
+        // database call
+
+        if(contact){
+            props.updateContact(props.document.id,contact);
+        }
+        else{
+            props.addContact(props.document.id,contact);
+        }
 
         history.push('/education');
     }
 
 
-    // Retrieves data if the specified object and the specified key exists,
-    // to set the detail for the required input field 
     const getFieldData=(key)=>{
         if(contact && contact[key]){
           return contact[key]
@@ -51,10 +46,6 @@ function Contact(props) {
         return "";
     }
     
-    // Below we have all of the input fields, 
-    // to enter the details and manipulate in contact object which has details for the skin.
-    // State is managed with object and key-value pairs instead of seperate state variables,
-    // this tends to sound code in a cleaner way.
     return (
           <div className="container med contact">
             <div className="section funnel-section">
@@ -66,13 +57,11 @@ function Contact(props) {
                             </div>
                             <div className="error"></div>
                         </div>
-
                         <div className="input-group"><label>Last Name</label>
                             <div className="effect"><input type="text" name={fieldCd.LastName}  value={getFieldData(fieldCd.LastName)}  onChange={onchange}/><span></span>
                             </div>
                             <div className="error"></div>
                         </div>
-
                         <div className="input-group full"><label>Professional Summary</label>
                             <div className="effect"><input type="text" name={fieldCd.ProfSummary}   value={getFieldData(fieldCd.ProfSummary)}  onChange={onchange}/><span></span>
                             </div>
@@ -134,7 +123,7 @@ function Contact(props) {
                 </div>
 
                 <div className="preview-card">
-                    <ResumePreview contactSection={contact} skinCd={props?.document?.skinCd}></ResumePreview>
+                    <ResumePreview contactSection={contact} skinCd={props.document.skinCd}></ResumePreview>
                 </div>
 
             </div>
@@ -142,6 +131,18 @@ function Contact(props) {
     );
 }
 
-
-export default Contact
+ 
+const mapStateToProps=(state)=>{
+  return {
+      contactSection:state.contactSection,
+      document:state.document
+  }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return{
+       addContact:(id,contact)=>dispatch(contactActions.add(id,contact)),
+       updateContact:(id,contact)=>dispatch(contactActions.update(id,contact))
+    }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Contact))
 
